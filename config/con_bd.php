@@ -2,10 +2,10 @@
 
 	//define("DB_HOST","");
 	$DB_HOST = "localhost";
-	$DB_PORT = "3307";
+	$DB_PORT = "3306";
 	$DB_USER = "root";
 	$DB_PASS = "";
-	$DB_NAME = "pawi";
+	$DB_NAME = "controle_gastos";
 	
 	$conn = null;
 	

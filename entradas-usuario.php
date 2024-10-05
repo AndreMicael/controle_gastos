@@ -28,18 +28,18 @@ if (!isset($_SESSION['login'])) {
                 </tr>";
         
         // Exibir as entradas armazenadas na sessão
-        foreach ($_SESSION['entradas'] as $entrada) {
+        foreach ($_SESSION['entradas'] as $entradas) {
             echo "<tr>";
-            echo "<td>" . htmlspecialchars($entrada['descricao']) . "</td>"; 
-            echo "<td>" . htmlspecialchars($entrada['valor']) . "</td>";
-            echo "<td>" . htmlspecialchars($entrada['data_entrada']) . "</td>";
-            echo "<td>" . htmlspecialchars($entrada['categoria']) . "</td>";
+            echo "<td>" . htmlspecialchars($entradas['descricao']) . "</td>"; 
+            echo "<td>" . htmlspecialchars($entradas['valor']) . "</td>";
+            echo "<td>" . htmlspecialchars($entradas['data_entrada']) . "</td>";
+            echo "<td>" . htmlspecialchars($entradas['categoria']) . "</td>";
             echo "</tr>";
         }
     
         echo "</table>";
     } else {
-        echo "Nenhuma entrada armazenada na sessão.";
+        echo "Nenhuma Entrada armazenada na sessão.";
     }
     ?>
 </body>

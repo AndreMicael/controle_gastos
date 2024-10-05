@@ -19,7 +19,9 @@ $nome_session = $_SESSION["nome"];
 
       ?>
       <a href='scripts/entradas.php'>Entradas</a>
+      <a href='criar-entrada.php'>Criar entrada</a>
       <a href='scripts/saidas.php'>Saídas</a>
+      
       <?php
 
     }else{

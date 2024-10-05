@@ -33,6 +33,7 @@ if (isset($_POST["login"], $_POST["entrar"])) {
         // Armazena o nome e o login na sessão
         $_SESSION["login"] = $login;
         $_SESSION["nome"] = $nome; // Armazena o nome do usuário na sessão
+       
 
         header("Location:../index.php");
         exit();

@@ -16,7 +16,7 @@ if (isset($_SESSION["login"])) {
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         $user_id = $row['id']; // Obtém o ID do usuário
-        $_SESSION['user_id'] = $user_id; // Armazena o ID do usuário na sessão
+       
         // Buscando as saídas relacionadas ao usuario logado
         $result2 = mysqli_query($conn, "SELECT descricao, valor, data_entrada, categoria FROM entradas WHERE usuario_id = '$user_id'");
 

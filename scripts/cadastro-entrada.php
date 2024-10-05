@@ -1,61 +1,66 @@
-<?php 
+<?php
+session_start(); // Certifique-se de iniciar a sessão
 
 require_once("../config/con_bd.php");
-session_start();
 
-// Verifica se o usuário está logado
-if (isset($_SESSION["login"])) {
-    // Verifica se o user_id está definido na sessão
-    $user_id = $_SESSION['id_usuario'];
+if ($conn) {
+    // Verifica se o usuário está logado
+    if (isset($_SESSION["login"])) {
+        $username = $_SESSION["login"];
+        
+        // Obtendo o ID do usuário
+        $result = mysqli_query($conn, "SELECT id FROM usuario WHERE username = '$username'");
 
-    // Verifica se a conexão com o banco de dados foi bem-sucedida
-    if ($conn) {
-        // Obtendo os dados do POST
-        $descricao = $_POST['descricao'] ?? '';
-        $preco = $_POST['preco'] ?? '';
-        $data_entrada = $_POST['data_entrada'] ?? '';
-        $categoria = $_POST['categoria'] ?? '';
+        // Verifica se o usuário foi encontrado
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            $user_id = $row['id']; // Obtém o ID do usuário
 
-        // Verificar se todos os campos estão preenchidos
-        if (empty($descricao) || empty($preco) || empty($data_entrada) || empty($categoria)) {
-            echo "Todos os campos devem ser preenchidos.";
-            exit();
-        }
+            // Buscando as saídas relacionadas ao usuário logado
+            $result2 = mysqli_query($conn, "SELECT descricao, valor, data_entrada, categoria FROM entradas WHERE usuario_id = '$user_id'");
+            if (!$result2) {
+                echo "Erro ao buscar as entradas: " . mysqli_error($conn);
+                exit();
+            }
 
-        // Sanitizar os dados
-        $descricao = mysqli_real_escape_string($conn, $descricao);
-        $preco = mysqli_real_escape_string($conn, $preco);
-        $preco = str_replace(',', '.', $preco); // Garantir formato correto do preço
-        $data_entrada = mysqli_real_escape_string($conn, $data_entrada);
-        $categoria = mysqli_real_escape_string($conn, $categoria);
+            // Processa os dados do formulário
+            $descricao = $_POST['descricao'] ?? '';
+            $preco = $_POST['preco'] ?? '';
+            $data_entrada = $_POST['data_entrada'] ?? '';
+            $categoria = $_POST['categoria'] ?? '';
 
-        // Verifique se o user_id existe
-        $result_user = mysqli_query($conn, "SELECT id FROM usuario WHERE id = '$user_id'");
-        if (mysqli_num_rows($result_user) === 0) {
-            echo "Erro: o ID do usuário não existe na tabela.";
-            exit();
-        }
+            if (empty($descricao) || empty($preco) || empty($data_entrada) || empty($categoria)) {
+                echo "Todos os campos devem ser preenchidos.";
+                exit();
+            }
 
-        // Preparar a instrução SQL para inserção
-        $stmt = $conn->prepare("INSERT INTO entradas (descricao, valor, data_entrada, categoria, usuario_id) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssi", $descricao, $preco, $data_entrada, $categoria, $user_id);
+            // Sanitizar os dados
+            $descricao = mysqli_real_escape_string($conn, $descricao);
+            $preco = mysqli_real_escape_string($conn, $preco);
+            $preco = str_replace(',', '.', $preco); // Garantir formato correto do preço
+            $data_entrada = mysqli_real_escape_string($conn, $data_entrada);
+            $categoria = mysqli_real_escape_string($conn, $categoria);
 
-        // Executar a inserção
-        if ($stmt->execute()) {
-            header("Location: ../entradas-usuario.php"); // Redireciona após a inserção
-            exit();
+            // Inserir no banco de dados
+            $str_insert = "INSERT INTO entradas (descricao, valor, data_entrada, categoria, usuario_id) 
+                           VALUES ('$descricao', '$preco', '$data_entrada', '$categoria', '$user_id')";
+
+            $result_insert = mysqli_query($conn, $str_insert);
+
+            if ($result_insert) {
+                echo "<br />Nova entrada cadastrada com sucesso!";
+            } else {
+                echo "<br />Erro cadastrando entrada!";
+                echo "<br />ERRO: " . mysqli_error($conn); // Exibir o erro retornado pelo SGBD
+                echo "<br />ERRO n.: " . mysqli_errno($conn); // Exibir o número do erro retornado pelo SGBD
+            }
         } else {
-            echo "<br />Erro cadastrando entrada!";
-            echo "<br />ERRO: " . $stmt->error; // Exibir o erro retornado pela execução da instrução
-            die(); // Interrompe a execução
+            echo "Usuário não encontrado.";
         }
-
-        // Fechar a instrução
-        $stmt->close();
     } else {
-        echo "<br />Não foi possível realizar a conexão com o banco de dados!";
+        echo "<br />Você precisa estar logado para cadastrar uma entrada.";
     }
 } else {
-    echo "Usuário não está logado.";
+    echo "<br />Não foi possível realizar a conexão com o banco de dados!";
 }
 ?>

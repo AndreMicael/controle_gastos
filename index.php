@@ -6,6 +6,29 @@
     <title>Document</title>
 </head>
 <body>
-    pagina
+<?php
+
+session_start(); // Inicie a sessão
+
+$nome_session = $_SESSION["nome"];
+
+
+    if(isset($nome_session)){
+      echo"Bem-Vindo, $nome_session <br>";
+      echo"Essas informações PODEM ser acessadas por você";
+
+      ?>
+      <a href='scripts/entradas.php'>Entradas</a>
+      <a href='scripts/saidas.php'>Saídas</a>
+      <?php
+
+    }else{
+      echo"Bem-Vindo, convidado <br>";
+      echo"Essas informações NÃO PODEM ser acessadas por você";
+
+    
+
+    }
+?>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("../config/con_bd.php");
 
 // Verifique se os campos estão definidos
@@ -13,7 +14,7 @@ if (isset($_POST["login"], $_POST["entrar"])) {
     }
 
     // Preparar a consulta para evitar SQL Injection
-    $stmt = $conn->prepare("SELECT * FROM usuario WHERE nome = ?");
+    $stmt = $conn->prepare("SELECT nome FROM usuario WHERE username = ?");
     $stmt->bind_param("s", $login);  // "s" significa string
 
     // Executar a consulta
@@ -23,10 +24,16 @@ if (isset($_POST["login"], $_POST["entrar"])) {
     // Verifica se o usuário foi encontrado
     if ($result->num_rows <= 0) {
         echo "<script language='javascript' type='text/javascript'>
-        alert('Login e/ou senha incorretos');window.location.href='../login-usuario.html';</script>";
+        alert('Login incorreto');window.location.href='../login-usuario.html';</script>";
         die();
     } else {
-        setcookie("login", $login);
+        $row = $result->fetch_assoc();
+        $nome = $row['nome']; // Pega o nome do banco de dados
+
+        // Armazena o nome e o login na sessão
+        $_SESSION["login"] = $login;
+        $_SESSION["nome"] = $nome; // Armazena o nome do usuário na sessão
+
         header("Location:../index.php");
         exit();
     }
@@ -36,7 +43,3 @@ if (isset($_POST["login"], $_POST["entrar"])) {
     mysqli_close($conn);
 }
 ?>
-
-
-<!-- 
-Referencia: https://www.devmedia.com.br/criando-um-sistema-de-cadastro-e-login-com-php-e-mysql/37213 -->

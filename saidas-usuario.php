@@ -19,6 +19,8 @@ if (!isset($_SESSION['login'])) {
     <?php 
     // Verifica se há entradas armazenadas na sessão
     if (!empty($_SESSION['saidas'])) {
+        echo "<a href='criar-entrada.php'>Inserir Nova Saída</a>";
+        echo "<a href='entradas-usuario.php'>Ir para Entradas</a>";
         echo "<table border='1'>
                 <tr>
                     <th>Descrição</th>

@@ -19,6 +19,8 @@ if (!isset($_SESSION['login'])) {
     <?php 
     // Verifica se há entradas armazenadas na sessão
     if (!empty($_SESSION['entradas'])) {
+        echo "<a href='criar-entrada.php'>Inserir Nova Entrada</a>";
+        echo "<a href='saidas-usuario.php'>Ir para Saídas</a>";
         echo "<table border='1'>
                 <tr>
                     <th>Descrição</th>
@@ -38,6 +40,7 @@ if (!isset($_SESSION['login'])) {
         }
     
         echo "</table>";
+        
     } else {
         echo "Nenhuma Entrada armazenada na sessão.";
     }

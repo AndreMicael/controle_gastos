@@ -22,6 +22,7 @@ $nome_session = $_SESSION["nome"];
       <a href='criar-entrada.php'>Criar entrada</a>
       <a href='scripts/saidas.php'>Saídas</a>
       <a href='criar-saida.php'>Criar saída</a>
+      <a href='balanco.html'>Balanço</a>
       
       <?php
 

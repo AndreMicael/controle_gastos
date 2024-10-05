@@ -22,7 +22,7 @@ require_once("config/con_bd.php");
 	<input type="text" name="sobrenome" />
 	<br />
 	<br />
-	<label>Username:</label>
+	<label>Nome de Usuário:</label>
 	<input type="text" name="username" />
 	<br />
 	<br />

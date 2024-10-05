@@ -16,7 +16,7 @@ if ($conn) {
             $row = mysqli_fetch_assoc($result);
             $user_id = $row['id']; // Obtém o ID do usuário
 
-            // Buscando as saídas relacionadas ao usuário logado
+            // Buscando as entradas relacionadas ao usuário logado
             $result2 = mysqli_query($conn, "SELECT descricao, valor, data_entrada, categoria FROM entradas WHERE usuario_id = '$user_id'");
             if (!$result2) {
                 echo "Erro ao buscar as entradas: " . mysqli_error($conn);
@@ -48,7 +48,7 @@ if ($conn) {
             $result_insert = mysqli_query($conn, $str_insert);
 
             if ($result_insert) {
-                echo "<br />Nova entrada cadastrada com sucesso!";
+                header("Location: ../entradas-usuario.php");
             } else {
                 echo "<br />Erro cadastrando entrada!";
                 echo "<br />ERRO: " . mysqli_error($conn); // Exibir o erro retornado pelo SGBD

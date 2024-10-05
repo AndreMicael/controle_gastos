@@ -17,19 +17,19 @@ if (isset($_SESSION["login"])) {
         $row = mysqli_fetch_assoc($result);
         $user_id = $row['id']; // Obtém o ID do usuário
        
-        // Buscando as saídas relacionadas ao usuario logado
+        // Buscando as entradas relacionadas ao usuario logado
         $result2 = mysqli_query($conn, "SELECT descricao, valor, data_entrada, categoria FROM entradas WHERE usuario_id = '$user_id'");
 
-        // Armazenar todas as saídas na sessão
+        // Armazenar todas as entradas na sessão
         while ($entrada = mysqli_fetch_assoc($result2)) {
-            $_SESSION['entradas'][] = $entrada; // Adiciona cada saída ao array da sessão
+            $_SESSION['entradas'][] = $entrada; // Adiciona cada entrada ao array da sessão
         }
 
         if (empty($_SESSION['entradas'])) {
-            echo "Nenhuma saída encontrada.";
+            echo "Nenhuma entrada encontrada.";
         } else {
-            echo "Saídas armazenadas com sucesso!";
-            // Redirecionar apenas se houver saídas
+            echo "entradas armazenadas com sucesso!";
+            // Redirecionar apenas se houver entradas
             header("Location: ../entradas-usuario.php");
             exit(); // Adiciona exit para garantir que o script pare após o redirecionamento
         }
@@ -41,6 +41,6 @@ if (isset($_SESSION["login"])) {
     // Fechar a conexão
     mysqli_close($conn);
 } else {
-    echo "Você precisa estar logado para ver suas saídas.";
+    echo "Você precisa estar logado para ver suas entradas.";
 }
 ?>

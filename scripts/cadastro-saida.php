@@ -48,7 +48,7 @@ if ($conn) {
             $result_insert = mysqli_query($conn, $str_insert);
 
             if ($result_insert) {
-                echo "<br />Nova saida cadastrada com sucesso!";
+                header("Location: ../saidas-usuario.php");
             } else {
                 echo "<br />Erro cadastrando saida!";
                 echo "<br />ERRO: " . mysqli_error($conn); // Exibir o erro retornado pelo SGBD

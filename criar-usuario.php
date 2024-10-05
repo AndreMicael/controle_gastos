@@ -21,6 +21,14 @@ require_once("config/con_bd.php");
 	<label>Sobrenome:</label>
 	<input type="text" name="sobrenome" />
 	<br />
+	<br />
+	<label>Username:</label>
+	<input type="text" name="username" />
+	<br />
+	<br />
+	<label>Senha:</label>
+	<input type="text" name="senha" />
+	<br />
 	<button type="submit">
 		Cadastrar
 	</button>

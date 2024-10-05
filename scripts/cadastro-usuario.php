@@ -4,18 +4,22 @@
 	
 	if ($conn != null) {
 	
-		if (!empty($_POST['nome']) && !empty($_POST['sobrenome'])) {
+		if (!empty($_POST['nome']) && !empty($_POST['sobrenome']) && !empty($_POST['username']) && !empty($_POST['senha'])) {
 		
 			//sanitizar dados
 			$nome_usuario = 
 			  mysqli_real_escape_string($conn, $_POST['nome']);
 			$sobrenome_usuario =  
 			  mysqli_real_escape_string($conn,$_POST['sobrenome']);
+			$username = 
+			  mysqli_real_escape_string($conn,$_POST['username']);
+			$senha = 
+			  mysqli_real_escape_string($conn,$_POST['senha']);
 			  
 			
 			
-			$str_insert = "INSERT INTO usuario (nome,sobrenome) 
-							 VALUES ('$nome_usuario','$sobrenome_usuario')";
+			$str_insert = "INSERT INTO usuario (nome,sobrenome,username,senha) 
+							 VALUES ('$nome_usuario','$sobrenome_usuario','$username','$senha')";
 			
 			$result = mysqli_query($conn, $str_insert);
 			

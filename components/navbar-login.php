@@ -6,8 +6,9 @@
     $cash = file_get_contents('components/cash.svg');
  
     echo '<link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />';
-  
+    echo '<link rel="icon" type="image/x-icon" href="components/favicon.ico">';
     echo '<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>';
+
     if (isset($_SESSION['login'])) {
         echo <<<EOD
       

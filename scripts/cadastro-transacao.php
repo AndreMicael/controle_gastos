@@ -26,7 +26,7 @@ if ($conn) {
 
         // Verifica se o usuário foi encontrado
         if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_assoc($result);
+            $row = mysqli_fetch_assoc($result); // Obtém a row do resultado
             $user_id = $row["id"]; // Obtém o ID do usuário
 
             // Processa os dados do formulário

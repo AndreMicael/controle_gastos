@@ -25,7 +25,7 @@ $user_id = $_SESSION["user_id"];
 // Verifica se o usuário está logado
 // Se o usuário não estiver logado, redireciona para a página de login
 if (!isset($_SESSION["login"])) {
-    header("Location: index.php");
+    header("Location: home.php");
     exit(); 
 }
 ?>

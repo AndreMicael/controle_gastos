@@ -2,7 +2,7 @@
 Ele verifica se o usuário existe no banco de dados e se a senha está correta. Se o login for bem-sucedido, o usuário é redirecionado 
 para a página inicial do site. Caso contrário, uma mensagem de erro é exibida. 
 
-Aqui continua (segundo estágio) o fluxo: login-usuario.php -> scripts/logar-usuario.php -> index.php
+Aqui continua (segundo estágio) o fluxo: login-usuario.php -> scripts/logar-usuario.php -> home.php
 
 -->
 
@@ -56,11 +56,11 @@ if (isset($_POST["login"], $_POST["entrar"], $_POST["senha"])) {
             // Armazena o nome, login e user_id na sessão
             // A sessão é usada para armazenar informações do usuário, como nome, login e ID do usuário
             $_SESSION["login"] = $login; // Armazena o login do usuário na sessão
-            $_SESSION["nome"] = $nome; // Armazena o nome do usuário na sessão, vamos usar isso no index.php
+            $_SESSION["nome"] = $nome; // Armazena o nome do usuário na sessão, vamos usar isso no home.php
             $_SESSION["user_id"] = $userId; // Armazena o ID do usuário na sessão como user_id, importante para a identificação do usuário no BD
 
             // Redireciona o usuário para a página inicial do site, lá ele vai ver o balanço geral das finanças dele
-            header("Location:../index.php");
+            header("Location:../home.php");
             exit();
         } else {
             // Se a senha estiver incorreta, exibe uma mensagem de erro e redireciona o usuário para a página de login

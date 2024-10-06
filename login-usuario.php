@@ -1,7 +1,7 @@
 <!-- Nesta página realizmos o login do usuário, isso fará ele ter acesso aos serviços e dados do site e do bd.
 O usuário precisa ter um username uma senha para poder acessar o site.
 
-Aqui é o primeiro estágio do fluxo: login-usuario.php -> scripts/logar-usuario.php -> index.php (página inicial logada) 
+Aqui é o primeiro estágio do fluxo: login-usuario.php -> scripts/logar-usuario.php -> home.php (página inicial logada) 
  -->
 
 <?php 

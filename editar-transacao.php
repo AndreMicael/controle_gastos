@@ -6,7 +6,7 @@ Nesta página, o usuário pode editar os dados da transação, como descrição,
 
 Aqui tem um formulário bem simples, este formulário se repete na página de criar-transacao.php.
 
-Fluxo de edição de transação: editar-transacao.php -> scripts/atualizar-produto.php -> index.php
+Fluxo de edição de transação: editar-transacao.php -> scripts/atualizar-produto.php -> home.php
 
 -->
 
@@ -18,7 +18,7 @@ include "components/navbar-login.php"; // Inclui a navbar do site (essa navbar a
 // Verificar se o usuário está logado
 // Se o usuário não estiver logado, redireciona para a página de login
 if (!isset($_SESSION["login"])) {
-    header("Location: index.php");
+    header("Location: home.php");
     exit();
 }
 // Pegar o ID da transação e o tipo da transação (entrada ou saída) da requisição POST

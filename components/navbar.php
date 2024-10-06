@@ -20,7 +20,7 @@
         
             <nav class="bg-blue-800 dark:bg-gray-900 text-white z-20 ">
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                    <a href="home.php" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <a href="index.php" class="flex items-center space-x-3 rtl:space-x-reverse">
                         $cash
                         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Finans</span>
                     </a>

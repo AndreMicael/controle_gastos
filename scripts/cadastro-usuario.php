@@ -36,6 +36,7 @@ if ($conn != null) {
 		// Verifica se a query foi executada com sucesso
         if ($result) {
             echo "<br />Novo usuario cadastrado com sucesso!";
+			header ("Location: ../login-usuario.php"); // Redireciona para a página de login
         } else {
             echo "<br />Erro cadastrando usuario!";
             echo "<br />ERRO: " . mysqli_error($conn); //exibir o erro retornado pelo SGBD

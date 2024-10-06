@@ -1,12 +1,12 @@
 <!-- Objetivo: Criar uma nova transação (entrada ou saída) no banco de dados
-Quando o usuário clica no botão "Adicionar nova transação" na página de entradas, saídas ou na index.php, 
+Quando o usuário clica no botão "Adicionar nova transação" na página de entradas, saídas ou na home.php, 
 ele é redirecionado para a página criar-transacao.php. 
 
 Nesta página, o usuário pode preencher um formulário com os dados da nova transação, como descrição, valor, data e categoria e tipo de transação. 
 
 Aqui tem um formulário bem simples, este formulário se repete na página de editar-transacao.php.
 
-Fluxo de criação de nova transação: criar-transação.php -> cadastro-transacao.php -> index.php
+Fluxo de criação de nova transação: criar-transação.php -> cadastro-transacao.php -> home.php
 -->
 
 <?php
@@ -17,7 +17,7 @@ include "components/navbar-login.php"; // Inclui a navbar do site (essa navbar a
 // Verifica se o usuário está logado
 // Se o usuário não estiver logado, redireciona para a página de login
 if (!isset($_SESSION["login"])) {
-    header("Location: index.php");
+    header("Location: home.php");
     exit();
 }
 ?>

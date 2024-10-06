@@ -9,7 +9,7 @@ require_once("../config/con_bd.php"); // Inclui o script de conexão ao BD
 
 // Verificar se o usuário está logado
 if (!isset($_SESSION['login'])) {
-    header('Location: ../index.php');
+    header('Location: ../home.php');
     exit();     
 }
 
@@ -31,7 +31,7 @@ if ($tipo_transacao === 'entrada') {
         if($pagina_origem === 'entradas') {
             header("Location: ../entradas-usuario.php"); // Redireciona para a página de entradas
         } else {
-            header("Location: ../index.php"); // Redireciona para a página inicial
+            header("Location: ../home.php"); // Redireciona para a página inicial
         }      
         exit();
     } else {
@@ -48,7 +48,7 @@ if ($tipo_transacao === 'entrada') {
        if($pagina_origem === 'saidas') {
         header("Location: ../saidas-usuario.php"); // Redireciona para a página de saídas
        }else {
-        header("Location: ../index.php"); // Redireciona para a página inicial
+        header("Location: ../home.php"); // Redireciona para a página inicial
        } // Redireciona em caso de sucesso
         exit();
     } else {

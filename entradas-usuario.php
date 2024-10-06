@@ -25,7 +25,7 @@ $user_id = $_SESSION["user_id"];
 // Verifica se o usuário está logado
 // Se o usuário não estiver logado, redireciona para a página de login
 if (!isset($_SESSION["login"])) {
-    header("Location: index.php");
+    header("Location: home.php");
     exit();  
 }
 ?>
@@ -68,8 +68,8 @@ if (!isset($_SESSION["login"])) {
         // Exibir as entradas do usuário
         // Aqui exibimos as entradas do usuário logado
         // A função mysqli_fetch_assoc() retorna uma linha do conjunto de resultados como um array associativo
-        // O htmlspecialchars() foi explicado anteriormente na pagina index.php
-        // o DateTime() também foi explicado anteriormente na página index.php
+        // O htmlspecialchars() foi explicado anteriormente na pagina home.php
+        // o DateTime() também foi explicado anteriormente na página home.php
         // Laço while para percorrer todas as entradas do usuário
         while ($entrada = mysqli_fetch_assoc($result)) {
             echo "<tbody>";

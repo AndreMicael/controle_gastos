@@ -4,7 +4,7 @@ Quando o usuário preenche o formulário
 na página criar-transacao.php e clica no botão "Adicionar nova transação", ele é redirecionado para
 a página cadastro-transacao.php. Nesta página, os dados do formulário são processados e inseridos no banco de dados.
 
-Fluxo de cadastro de transação: criar-transacao.php -> cadastro-transacao.php -> index.php -->
+Fluxo de cadastro de transação: criar-transacao.php -> cadastro-transacao.php -> home.php -->
 
 <?php
 session_start(); // Certifique-se de iniciar a sessão
@@ -80,7 +80,7 @@ if ($conn) {
                 } else if($tipo === "saida") {
                     header("Location: ../saidas-usuario.php"); // Redireciona para a página de saídas
                 } else {
-                    header("Location: ../index.php"); // Redireciona para a página inicial
+                    header("Location: ../home.php"); // Redireciona para a página inicial
                 }              
                 exit(); // Adicionei exit() após o redirecionamento
             } else {

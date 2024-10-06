@@ -4,9 +4,9 @@
 session_start(); // Inicia a sessão
 require_once("../config/con_bd.php"); // Inclui o script de conexão ao BD
 
-// Verifique se o usuário está logado
+// Verifique se o usuario está logado
 if (isset($_SESSION["login"])) {
-    // Obtendo o nome de usuário da sessão
+    // Obtendo o nome de usuario da sessão
     $username = $_SESSION["login"];
 
     // Armazena as saídas do usuário na sessão

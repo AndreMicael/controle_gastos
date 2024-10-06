@@ -3,7 +3,7 @@ Quando o usuário clica no botão "Editar" em uma transação na página de entr
 
 Nesta página, o usuário pode editar os dados da transação, como descrição, valor, data e categoria. 
 
-Final do fluxo botão editar -> atualizar-produto.php -> index.php
+Final do fluxo botão editar -> atualizar-produto.php -> home.php
 
 -->
 
@@ -14,7 +14,7 @@ session_start(); // Inicia a sessão para armazenar o nome do usuário e o ID do
 
 // Verificar se o usuário está logado
 if (!isset($_SESSION["login"])) {
-    header("Location: index.php");
+    header("Location: home.php");
     exit();
 }
 
@@ -61,7 +61,7 @@ if (mysqli_query($conn, $query)) {
     } else if($pagina_origem = 'saidas') {
         header("Location: ../saidas-usuario.php"); // Redireciona para a página de saídas
     } else {
-        header("Location: ../index.php"); // Redireciona para a página inicial
+        header("Location: ../home.php"); // Redireciona para a página inicial
     }
     
     exit();

@@ -18,49 +18,34 @@ if ($conn) {
 
             // Processa os dados do formulário
             $descricao = $_POST['descricao'] ?? '';
-            $preco = $_POST['preco'] ?? '';
-            $data = $_POST['data_entrada'] ?? '';
-            $categoria = $_POST['categoria'] ?? '';
             $tipo = $_POST['tipo'] ?? '';
+            $preco = $_POST['preco'] ?? '';
+            $categoria = $_POST['categoria'] ?? '';
+            $data_transacao = $_POST['data_transacao'] ?? ''; // Removido o espaço extra
 
+            // Verifica o tipo da transação e busca os dados
             if ($tipo === 'entrada') {
-                // A data de entrada já é atribuída antes
-                $result2 = mysqli_query($conn, "SELECT descricao, valor, data_entrada, categoria FROM entradas WHERE usuario_id = '$user_id'");
-                if (!$result2) {
-                    echo "Erro ao buscar as entradas: " . mysqli_error($conn);
-                    exit();
-                }
+                $result2 = mysqli_query($conn, "SELECT descricao, valor, data_transacao, categoria FROM entradas WHERE usuario_id = '$user_id'");
             } elseif ($tipo === 'saida') {
-                $data = $_POST['data_saida'] ?? ''; // Corrigido para pegar a data de saída
-                $result2 = mysqli_query($conn, "SELECT descricao, valor, data_saida, categoria FROM saidas WHERE usuario_id = '$user_id'");
-                if (!$result2) {
-                    echo "Erro ao buscar as saídas: " . mysqli_error($conn);
-                    exit();
-                }
-            } else { 
+                $result2 = mysqli_query($conn, "SELECT descricao, valor, data_transacao, categoria FROM saidas WHERE usuario_id = '$user_id'");
+            } else {
                 echo "Tipo de transação inválido.";
-                exit();
-            }
-
-            // Validação dos campos
-            if (empty($descricao) || empty($preco) || empty($data) || empty($categoria)) {
-                echo "Todos os campos devem ser preenchidos.";
                 exit();
             }
 
             // Sanitizar os dados
             $descricao = mysqli_real_escape_string($conn, $descricao);
             $preco = mysqli_real_escape_string($conn, str_replace(',', '.', $preco)); // Garantir formato correto do preço
-            $data = mysqli_real_escape_string($conn, $data);
+            $data_transacao = mysqli_real_escape_string($conn, $data_transacao);
             $categoria = mysqli_real_escape_string($conn, $categoria);
 
             // Inserir no banco de dados
             if ($tipo === 'entrada') {
-                $str_insert = "INSERT INTO entradas (descricao, valor, data_entrada, categoria, usuario_id) 
-                               VALUES ('$descricao', '$preco', '$data', '$categoria', '$user_id')";
+                $str_insert = "INSERT INTO entradas (descricao, valor, data_transacao, categoria, usuario_id) 
+                               VALUES ('$descricao', '$preco', '$data_transacao', '$categoria', '$user_id')";
             } elseif ($tipo === 'saida') {
-                $str_insert = "INSERT INTO saidas (descricao, valor, data_saida, categoria, usuario_id) 
-                               VALUES ('$descricao', '$preco', '$data', '$categoria', '$user_id')";
+                $str_insert = "INSERT INTO saidas (descricao, valor, data_transacao, categoria, usuario_id) 
+                               VALUES ('$descricao', '$preco', '$data_transacao', '$categoria', '$user_id')";
             }
 
             // Execute a inserção e verifique o resultado

@@ -22,7 +22,7 @@ if (!isset($_SESSION['login'])) {
    
     
     // Consulta ao banco de dados para buscar as entradas do usuário
-    $query = "SELECT id, descricao, valor, data_entrada, categoria FROM entradas WHERE usuario_id = '$user_id'";
+    $query = "SELECT id, descricao, valor, data_transacao, categoria FROM entradas WHERE usuario_id = '$user_id'";
     $result = mysqli_query($conn, $query);
 
     // Verifica se a consulta retornou resultados
@@ -45,7 +45,7 @@ if (!isset($_SESSION['login'])) {
             echo "<td>" . htmlspecialchars($entrada['descricao']) . "</td>"; 
             echo "<td>" . htmlspecialchars($entrada['valor']) . "</td>";
 
-            $data = new DateTime($entrada['data_entrada']);
+            $data = new DateTime($entrada['data_transacao']);
             echo "<td>" . htmlspecialchars($data->format('d/m/Y')) . "</td>";
             
             echo "<td>" . htmlspecialchars($entrada['categoria']) . "</td>";

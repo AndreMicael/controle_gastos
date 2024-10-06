@@ -19,8 +19,8 @@
     $user_id = $_SESSION['user_id'];
 
     // Puxar entradas e saídas do banco de dados
-    $entradas_query = "SELECT id, descricao, valor, data_entrada, categoria FROM entradas WHERE usuario_id = '$user_id'";
-    $saidas_query = "SELECT id, descricao, valor, data_saida, categoria FROM saidas WHERE usuario_id = '$user_id'";
+    $entradas_query = "SELECT id, descricao, valor, data_transacao, categoria FROM entradas WHERE usuario_id = '$user_id'";
+    $saidas_query = "SELECT id, descricao, valor, data_transacao, categoria FROM saidas WHERE usuario_id = '$user_id'";
 
     $entradas_result = mysqli_query($conn, $entradas_query);
     $saidas_result = mysqli_query($conn, $saidas_query);
@@ -36,7 +36,7 @@
             'tipo' => 'entrada',
             'descricao' => $entrada['descricao'],
             'valor' => $entrada['valor'],
-            'data' => $entrada['data_entrada'],
+            'data' => $entrada['data_transacao'],
             'categoria' => $entrada['categoria']
         ];
         $totalEntradas += $entrada['valor'];
@@ -49,7 +49,7 @@
             'tipo' => 'saida',
             'descricao' => $saida['descricao'],
             'valor' => $saida['valor'],
-            'data' => $saida['data_saida'],
+            'data' => $saida['data_transacao'],
             'categoria' => $saida['categoria']
         ];
         $totalSaidas += $saida['valor'];
@@ -117,8 +117,8 @@
 
     echo "</table>";
 
-    echo "<a href='criar-entrada.php'>Inserir Nova Entrada</a>";
-    echo "<a href='criar-saida.php'>Inserir Nova Saída</a>";
+    echo "<a href='criar-transacao.php'>Inserir Nova Transacao</a>";
+ 
 
     // Fechar conexão com o banco de dados
     mysqli_close($conn);

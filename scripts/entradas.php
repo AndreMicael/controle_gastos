@@ -18,7 +18,7 @@ if (isset($_SESSION["login"])) {
         $user_id = $row['id']; // Obtém o ID do usuário
        
         // Buscando as entradas relacionadas ao usuario logado
-        $result2 = mysqli_query($conn, "SELECT descricao, valor, data_entrada, categoria FROM entradas WHERE usuario_id = '$user_id'");
+        $result2 = mysqli_query($conn, "SELECT descricao, valor, data_transacao, categoria FROM entradas WHERE usuario_id = '$user_id'");
 
         // Armazenar todas as entradas na sessão
         while ($entrada = mysqli_fetch_assoc($result2)) {

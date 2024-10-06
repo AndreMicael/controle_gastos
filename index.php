@@ -18,11 +18,10 @@ $nome_session = $_SESSION["nome"];
       echo"Essas informações PODEM ser acessadas por você";
 
       ?>
-      <a href='scripts/entradas.php'>Entradas</a>
-      <a href='criar-entrada.php'>Criar entrada</a>
+      <a href='scripts/entradas.php'>Entradas</a>     
       <a href='scripts/saidas.php'>Saídas</a>
-      <a href='criar-saida.php'>Criar saída</a>
-      <a href='balanco.php'>Balanço</a>
+      <a href='criar-saida.php'>Criar Nova Transação</a>
+      <a href='balanco.php'>Balanço Geral</a>
       
       <?php
 

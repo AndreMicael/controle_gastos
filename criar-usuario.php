@@ -1,7 +1,9 @@
 <?php 
 
 require_once("config/con_bd.php");
+
 include('components/navbar.php');
+
 ?>
 
 

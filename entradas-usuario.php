@@ -3,6 +3,7 @@ require_once("config/con_bd.php");
 include('components/navbar-login.php');
 $edit = file_get_contents('components/edit.svg');
 $delete = file_get_contents('components/delete.svg');
+
    // Obtém o ID do usuário da sessão
    $user_id = $_SESSION['user_id'];
 

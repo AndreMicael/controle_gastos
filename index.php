@@ -129,8 +129,14 @@ if (isset($nome_session)) {
     // Fechar conexão com o banco de dados
     mysqli_close($conn);
 } else {
-    echo "Bem-Vindo, convidado <br>";
-    echo "Essas informações NÃO PODEM ser acessadas por você.";
+  echo '<link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />';  
+  echo '<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>';
+  echo "<div class='mx-auto'>";
+  echo "Essas informações NÃO PODEM ser acessadas por você. </br>";
+  echo "<a class='hover:underline font-bold text-red-500' href='login-usuario.php'>Faça login</a>";
+  echo " ou ";
+  echo "<a  class='hover:underline font-bold text-red-500' href='criar-usuario.php'>cadastre-se</a>";
+  echo '</div>';
 }
 ?>
 

@@ -3,6 +3,7 @@ require_once("config/con_bd.php");
 include('components/navbar-login.php');
 
 
+
 // Verificar se o usuário está logado
 if (!isset($_SESSION['login'])) {
     header('Location: index.php');

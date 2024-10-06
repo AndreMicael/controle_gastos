@@ -12,6 +12,7 @@ include('components/navbar-login.php');
     <title>Criar entradas</title>
 </head>
 <body>
+    <h1 style="text-align: center;">Criar nova transação</h1>
     <form action="scripts/cadastro-transacao.php" method="POST"> <!-- Corrigido aqui -->
     
     <label>Descrição:</label>

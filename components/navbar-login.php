@@ -8,7 +8,7 @@
         echo <<<EOD
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="index.php">Inicio</a></li>
                 <li><a href="criar-transacao.php">Criar Transação</a></li>  
                 <li><a href="entradas-usuario.php">Entradas</a></li>
                  <li><a href="saidas-usuario.php">Saídas</a></li>

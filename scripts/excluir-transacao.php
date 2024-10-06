@@ -19,7 +19,7 @@ if ($tipo_transacao === 'entrada') {
     // Deletar da tabela 'entradas'
     $delete_entrada = mysqli_query($conn, "DELETE FROM entradas WHERE id = '$id_transacao'");
     if ($delete_entrada) {
-        header("Location: ../balanco.php"); // Redireciona em caso de sucesso
+        header("Location: ../index.php"); // Redireciona em caso de sucesso
         exit();
     } else {
         echo "<br />Erro ao excluir entrada";
@@ -31,7 +31,7 @@ if ($tipo_transacao === 'entrada') {
     // Deletar da tabela 'saidas'
     $delete_saida = mysqli_query($conn, "DELETE FROM saidas WHERE id = '$id_transacao'");
     if ($delete_saida) {
-        header("Location: ../balanco.php"); // Redireciona em caso de sucesso
+        header("Location: ../index.php"); // Redireciona em caso de sucesso
         exit();
     } else {
         echo "<br />Erro ao excluir saída";

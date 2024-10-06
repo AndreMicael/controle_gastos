@@ -86,7 +86,10 @@ if (!isset($_SESSION['login'])) {
         echo "</tbody> </table></div>";
         
     } else {
+        echo "<div class='mt-4 mx-auto  text-center'>";
         echo "Nenhuma entrada encontrada.";
+        echo "<div class='mb-4'> <a href='criar-transacao.php' class='text-blue-600 dark:text-blue-500 hover:underline'> Adicionar nova transação </a> </div>";
+        echo "</div>";
     }
     ?>
 </body>

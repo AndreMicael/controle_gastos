@@ -9,6 +9,7 @@ if (!isset($_SESSION['login'])) {
 
 $id_transacao = $_POST['id'];
 $tipo_transacao = $_POST['tipo']; // Recebe o tipo da transação (entrada ou saída)
+$pagina_origem = $_POST['pagina_origem'];  // Recebe a página de origem (entradas ou saídas)
 
 // Sanitizar os dados
 $id_transacao = mysqli_real_escape_string($conn, $id_transacao);
@@ -19,7 +20,11 @@ if ($tipo_transacao === 'entrada') {
     // Deletar da tabela 'entradas'
     $delete_entrada = mysqli_query($conn, "DELETE FROM entradas WHERE id = '$id_transacao'");
     if ($delete_entrada) {
-        header("Location: ../index.php"); // Redireciona em caso de sucesso
+        if($pagina_origem === 'entradas') {
+            header("Location: ../entradas-usuario.php"); // Redireciona para a página de entradas
+        } else {
+            header("Location: ../index.php"); // Redireciona para a página inicial
+        }      
         exit();
     } else {
         echo "<br />Erro ao excluir entrada";
@@ -31,7 +36,11 @@ if ($tipo_transacao === 'entrada') {
     // Deletar da tabela 'saidas'
     $delete_saida = mysqli_query($conn, "DELETE FROM saidas WHERE id = '$id_transacao'");
     if ($delete_saida) {
-        header("Location: ../index.php"); // Redireciona em caso de sucesso
+       if($pagina_origem === 'saidas') {
+        header("Location: ../saidas-usuario.php"); // Redireciona para a página de saídas
+       }else {
+        header("Location: ../index.php"); // Redireciona para a página inicial
+       } // Redireciona em caso de sucesso
         exit();
     } else {
         echo "<br />Erro ao excluir saída";

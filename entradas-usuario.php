@@ -7,6 +7,7 @@ entradas no banco de dados e exibir as entradas do usuário logado.
 Além disso é possível excluir e editar as transações
 
 Interações possíveis: Ver entradas, Editar entradas, Excluir entradas, Criar nova transação
+Também é possivel ver a soma total das entradas
 -->
 
 
@@ -55,11 +56,11 @@ if (!isset($_SESSION["login"])) {
                 <table class='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
                 <thead class='text-xs text-gray-600  bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
                 <tr>
-                    <th scope='col' class='px-6 py-3'>Descrição</th>
-                    <th scope='col' class='px-6 py-3'>Valor</th>
-                    <th scope='col' class='px-6 py-3'>Data</th>
-                    <th scope='col' class='px-6 py-3'>Categoria</th>
-                   <th scope='col' class='px-6 py-3' colspan='2'></th>
+                    <th scope='col' class='px-3 py-3'>Descrição</th>
+                    <th scope='col' class='px-3 py-3'>Valor</th>
+                    <th scope='col' class='px-3 py-3'>Data</th>
+                    <th scope='col' class='px-3 py-3'>Categoria</th>
+                   <th scope='col' class='px-3 py-3' colspan='2'></th>
                     
                 </tr>
                 </thead>";
@@ -73,10 +74,11 @@ if (!isset($_SESSION["login"])) {
         while ($entrada = mysqli_fetch_assoc($result)) {
             echo "<tbody>";
             echo "<tr class='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'>";
-            echo "<td class='px-6 py-3'>" .
+            
+            echo "<td class='px-3 py-3'>" .
                 htmlspecialchars($entrada["descricao"]) .
                 "</td>";
-            echo "<td class='px-6 py-3'>R$ " .
+            echo "<td class='px-3 py-3'>R$ " .
                 htmlspecialchars($entrada["valor"]) .
                 "</td>";
 
@@ -84,16 +86,17 @@ if (!isset($_SESSION["login"])) {
             $total_entradas += $entrada["valor"];
 
             $data = new DateTime($entrada["data_transacao"]);
-            echo "<td class='px-6 py-3'>" .
+            echo "<td class='px-3 py-3'>" .
                 htmlspecialchars($data->format("d/m/Y")) .
                 "</td>";
 
-            echo "<td class='px-6 py-3'>" .
+            echo "<td class='px-3 py-3'>" .
                 htmlspecialchars($entrada["categoria"]) .
                 "</td>";
 
-            echo "<td class='px-6 py-3'>
+            echo "<td class='px-3 py-3'>
             <form action='scripts/excluir-transacao.php' method='POST' style='display:inline;'>
+                 <input type='hidden' name='pagina_origem' value='entradas'>         
                  <input type='hidden' name='id' value='" .
                 htmlspecialchars($entrada["id"]) .
                 "'>
@@ -106,6 +109,7 @@ if (!isset($_SESSION["login"])) {
 
             echo "<td class='px-6 py-3'>
             <form action='editar-transacao.php' method='POST' style='display:inline;'>
+            <input type='hidden' name='pagina_origem' value='entradas'>  
                 <input type='hidden' name='id' value='" .
                 htmlspecialchars($entrada["id"]) .
                 "'>

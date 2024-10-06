@@ -107,7 +107,7 @@ if (isset($nome_session)) {
                     <tr>
                         <th scope='col' class='px-6 py-3'>Tipo</th>
                         <th scope='col' class='px-6 py-3'>Descrição</th>
-                        <th scope='col' class='px-6 py-3'>Valor</th>
+                        <th scope='col' class='px-3 py-3'>Valor</th>
                         <th scope='col' class='px-6 py-3'>Data</th>
                         <th scope='col' class='px-6 py-3'>Categoria</th>
                         <th scope='col' colspan='2' class='px-2 py-3'></th>
@@ -126,10 +126,10 @@ if (isset($nome_session)) {
     foreach ($transacoes as $transacao) {
         echo "<tbody>";
         echo "<tr class='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'>";
-        echo "<td class='px-6 py-3'>" .
+        echo "<td class='px-3 py-3'>" .
             htmlspecialchars(ucfirst($transacao["tipo"])) .
             "</td>";
-        echo "<td class='px-6 py-3'>" .
+        echo "<td class='px-3 py-3'>" .
             htmlspecialchars($transacao["descricao"]) .
             "</td>";
         echo $transacao["tipo"] === "entrada"
@@ -137,10 +137,10 @@ if (isset($nome_session)) {
             : "<td> -R$ " . htmlspecialchars($transacao["valor"]) . "</td>";
 
         $data = new DateTime($transacao["data"]);
-        echo "<td class='px-6 py-3'>" .
+        echo "<td class='px-3 py-3'>" .
             htmlspecialchars($data->format("d/m/Y")) .
             "</td>";
-        echo "<td class='px-6 py-3'>" .
+        echo "<td class='px-3 py-3'>" .
             htmlspecialchars($transacao["categoria"]) .
             "</td>";
 

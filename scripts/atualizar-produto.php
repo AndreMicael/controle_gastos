@@ -26,12 +26,14 @@ $descricao = $_POST["descricao"];
 $valor = $_POST["valor"];
 $data_transacao = $_POST["data_transacao"];
 $categoria = $_POST["categoria"];
+$pagina_origem = $_POST["pagina_origem"];
 
 // Sanitizar os dados
 $descricao = mysqli_real_escape_string($conn, $descricao);
 $valor = mysqli_real_escape_string($conn, $valor);
 $data_transacao = mysqli_real_escape_string($conn, $data_transacao);
 $categoria = mysqli_real_escape_string($conn, $categoria);
+
 
 // Atualizar o produto no banco de dados
 // se for entrada, atualizar na tabela 'entradas', se for saída, atualizar na tabela 'saidas'
@@ -53,7 +55,15 @@ if ($tipo === "entrada") {
 
 // Executar a query (atualizar o produto)
 if (mysqli_query($conn, $query)) {
-    header("Location: ../index.php");
+
+    if($pagina_origem = 'entradas') {
+        header("Location: ../entradas-usuario.php"); // Redireciona para a página de entradas
+    } else if($pagina_origem = 'saidas') {
+        header("Location: ../saidas-usuario.php"); // Redireciona para a página de saídas
+    } else {
+        header("Location: ../index.php"); // Redireciona para a página inicial
+    }
+    
     exit();
 } else {
     echo "Erro ao atualizar produto: " . mysqli_error($conn);

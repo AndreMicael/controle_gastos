@@ -24,6 +24,8 @@ if (!isset($_SESSION["login"])) {
 // Pegar o ID da transação e o tipo da transação (entrada ou saída) da requisição POST
 $id = $_POST["id"];
 $tipo = $_POST["tipo"];
+$pagina_origem = $_POST["pagina_origem"];
+
 
 // Sanitizar os dados
 $id = mysqli_real_escape_string($conn, $id);
@@ -79,6 +81,7 @@ if ($tipo === "entrada") {
     preenchidos com os dados da transação que o usuário deseja editar. -->
     <form action="scripts/atualizar-produto.php" class='flex flex-col   w-1/2 mt-6 mx-auto align-center' method="POST">
         <input type="hidden" name="id" value="<?php echo $id; ?>">
+        <input type="hidden" name="pagina_origem" value="<?php echo $pagina_origem; ?>">
         <input type="hidden" name="tipo" value="<?php echo $tipo; ?>">
         <label for="descricao" class='text-sm'>Descrição:</label>
         <input type="text" name="descricao" class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 

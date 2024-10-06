@@ -68,7 +68,8 @@
                 <th>Valor</th>
                 <th>Data</th>
                 <th>Categoria</th>
-                <th>Ações</th>
+                <th>Excluir</th>
+                <th>Editar</th>
             </tr>";
 
     foreach ($transacoes as $transacao) {
@@ -81,14 +82,28 @@
         echo "<td>" . htmlspecialchars($data->format('d/m/Y')) . "</td>";
         echo "<td>" . htmlspecialchars($transacao['categoria']) . "</td>";   
         
-        // Adicionando o botão de excluir
+        // Adicionando o botão de excluir e editar
         echo "<td>
                 <form action='scripts/excluir-transacao.php' method='POST' style='display:inline;'>
                     <input type='hidden' name='id' value='" . htmlspecialchars($transacao['id']) . "'>
                     <input type='hidden' name='tipo' value='" . htmlspecialchars($transacao['tipo']) . "'>
                     <input type='submit' value='Excluir' onclick='return confirm(\"Tem certeza que deseja excluir esta transação?\");'>
                 </form>
+
+
               </td>";
+
+        echo "<td>
+        <form action='editar-transacao.php' method='POST' style='display:inline;'>
+            <input type='hidden' name='id' value='" . htmlspecialchars($transacao['id']) . "'>
+            <input type='hidden' name='tipo' value='" . htmlspecialchars($transacao['tipo']) . "'>
+            <input type='submit' value='Editar'>
+        </form>
+
+              
+            </td>";
+
+        
 
         echo "</tr>";
     }

@@ -19,6 +19,7 @@ if (!isset($_SESSION['login'])) {
     <?php 
     // Obtém o ID do usuário da sessão
     $user_id = $_SESSION['user_id'];
+   
     
     // Consulta ao banco de dados para buscar as entradas do usuário
     $query = "SELECT id, descricao, valor, data_entrada, categoria FROM entradas WHERE usuario_id = '$user_id'";
@@ -34,6 +35,8 @@ if (!isset($_SESSION['login'])) {
                     <th>Valor</th>
                     <th>Data</th>
                     <th>Categoria</th>
+                    <th>Excluir</th>
+                    <th>Editar</th>
                 </tr>";
         
         // Itera sobre os resultados e exibe as entradas
@@ -46,6 +49,27 @@ if (!isset($_SESSION['login'])) {
             echo "<td>" . htmlspecialchars($data->format('d/m/Y')) . "</td>";
             
             echo "<td>" . htmlspecialchars($entrada['categoria']) . "</td>";
+
+            echo "<td>
+            <form action='scripts/excluir-transacao.php' method='POST' style='display:inline;'>
+                <input type='hidden' name='id' value='" . htmlspecialchars($entrada['id']) . "'>
+                 <input type='hidden' name='tipo' value='entrada'>
+                <input type='submit' value='Excluir' onclick='return confirm(\"Tem certeza que deseja excluir esta transação?\");'>
+            </form>
+
+
+          </td>";
+
+            echo "<td>
+            <form action='editar-transacao.php' method='POST' style='display:inline;'>
+                <input type='hidden' name='id' value='" . htmlspecialchars($entrada['id']) . "'>
+                 <input type='hidden' name='tipo' value='entrada'>
+                <input type='submit' value='Editar'>
+            </form>
+
+            
+            </td>";
+                
             echo "</tr>";
         }
     

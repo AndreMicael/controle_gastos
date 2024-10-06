@@ -25,6 +25,10 @@ require_once("config/con_bd.php");
     <br />
     <label>Categoria:</label>
     <input type="text" name="categoria" required /> <!-- Adicionei required para garantir que o campo seja preenchido -->
+    <label>Transação</label>
+    <select name="tipo" required>
+        <option value="entrada">Entrada</option>
+        <option value="saida">Saída</option>
     <br />
     
     <button type="submit">

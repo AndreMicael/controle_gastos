@@ -17,8 +17,15 @@ if (!isset($_SESSION['login'])) {
 </head>
 <body>
     <?php 
-    // Verifica se há entradas armazenadas na sessão
-    if (!empty($_SESSION['entradas'])) {
+    // Obtém o ID do usuário da sessão
+    $user_id = $_SESSION['user_id'];
+    
+    // Consulta ao banco de dados para buscar as entradas do usuário
+    $query = "SELECT id, descricao, valor, data_entrada, categoria FROM entradas WHERE usuario_id = '$user_id'";
+    $result = mysqli_query($conn, $query);
+
+    // Verifica se a consulta retornou resultados
+    if (mysqli_num_rows($result) > 0) {
         echo "<a href='criar-entrada.php'>Inserir Nova Entrada</a>";
         echo "<a href='saidas-usuario.php'>Ir para Saídas</a>";
         echo "<table border='1'>
@@ -29,23 +36,24 @@ if (!isset($_SESSION['login'])) {
                     <th>Categoria</th>
                 </tr>";
         
-        // Exibir as entradas armazenadas na sessão
-        foreach ($_SESSION['entradas'] as $entradas) {
+        // Itera sobre os resultados e exibe as entradas
+        while ($entrada = mysqli_fetch_assoc($result)) {
             echo "<tr>";
-            echo "<td>" . htmlspecialchars($entradas['descricao']) . "</td>"; 
-            echo "<td>" . htmlspecialchars($entradas['valor']) . "</td>";
-            echo "<td>" . htmlspecialchars($entradas['data_entrada']) . "</td>";
-            echo "<td>" . htmlspecialchars($entradas['categoria']) . "</td>";
+            echo "<td>" . htmlspecialchars($entrada['descricao']) . "</td>"; 
+            echo "<td>" . htmlspecialchars($entrada['valor']) . "</td>";
+
+            $data = new DateTime($entrada['data_entrada']);
+            echo "<td>" . htmlspecialchars($data->format('d/m/Y')) . "</td>";
+            
+            echo "<td>" . htmlspecialchars($entrada['categoria']) . "</td>";
             echo "</tr>";
         }
     
         echo "</table>";
         
     } else {
-        echo "Nenhuma Entrada armazenada na sessão.";
+        echo "Nenhuma entrada encontrada.";
     }
     ?>
 </body>
 </html>
-
-

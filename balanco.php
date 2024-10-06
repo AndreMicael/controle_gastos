@@ -15,19 +15,24 @@
         exit();
     }
 
-    // Puxar entrada e saídas e calcular o balanço
-    $entradas = $_SESSION['entradas'];
-    $saidas = $_SESSION['saidas'];
+    // Obtém o ID do usuário logado
+    $user_id = $_SESSION['user_id'];
 
-    // Combinar entradas e saídas
+    // Puxar entradas e saídas do banco de dados
+    $entradas_query = "SELECT id, descricao, valor, data_entrada, categoria FROM entradas WHERE usuario_id = '$user_id'";
+    $saidas_query = "SELECT id, descricao, valor, data_saida, categoria FROM saidas WHERE usuario_id = '$user_id'";
+
+    $entradas_result = mysqli_query($conn, $entradas_query);
+    $saidas_result = mysqli_query($conn, $saidas_query);
+
     $transacoes = [];
     $totalEntradas = 0;
     $totalSaidas = 0;
 
     // Adicionar entradas ao array de transações
-    foreach ($entradas as $key => $entrada) {
+    while ($entrada = mysqli_fetch_assoc($entradas_result)) {
         $transacoes[] = [
-            'id' => $key, // Supondo que o ID seja a chave da entrada
+            'id' => $entrada['id'],
             'tipo' => 'entrada',
             'descricao' => $entrada['descricao'],
             'valor' => $entrada['valor'],
@@ -38,9 +43,9 @@
     }
 
     // Adicionar saídas ao array de transações
-    foreach ($saidas as $key => $saida) {
+    while ($saida = mysqli_fetch_assoc($saidas_result)) {
         $transacoes[] = [
-            'id' => $key, // Supondo que o ID seja a chave da saída
+            'id' => $saida['id'],
             'tipo' => 'saida',
             'descricao' => $saida['descricao'],
             'valor' => $saida['valor'],
@@ -78,8 +83,9 @@
         
         // Adicionando o botão de excluir
         echo "<td>
-                <form action='excluir_transacao.php' method='POST' style='display:inline;'>
+                <form action='scripts/excluir-transacao.php' method='POST' style='display:inline;'>
                     <input type='hidden' name='id' value='" . htmlspecialchars($transacao['id']) . "'>
+                    <input type='hidden' name='tipo' value='" . htmlspecialchars($transacao['tipo']) . "'>
                     <input type='submit' value='Excluir' onclick='return confirm(\"Tem certeza que deseja excluir esta transação?\");'>
                 </form>
               </td>";
@@ -99,6 +105,8 @@
     echo "<a href='criar-entrada.php'>Inserir Nova Entrada</a>";
     echo "<a href='criar-saida.php'>Inserir Nova Saída</a>";
 
+    // Fechar conexão com o banco de dados
+    mysqli_close($conn);
     ?>
 </body>
 </html>

@@ -17,10 +17,17 @@ if (!isset($_SESSION['login'])) {
 </head>
 <body>
     <?php 
-    // Verifica se há entradas armazenadas na sessão
-    if (!empty($_SESSION['saidas'])) {
-        echo "<a href='criar-entrada.php'>Inserir Nova Saída</a>";
-        echo "<a href='entradas-usuario.php'>Ir para Entradas</a>";
+    
+    $user_id = $_SESSION['user_id'];
+
+    $query = "SELECT id, descricao, valor, data_saida, categoria FROM saidas WHERE usuario_id = '$user_id'";
+    $result = mysqli_query($conn, $query);
+
+
+       // Verifica se a consulta retornou resultados
+       if (mysqli_num_rows($result) > 0) {
+        echo "<a href='criar-entrada.php'>Inserir Nova Entrada</a>";
+        echo "<a href='saidas-usuario.php'>Ir para Saídas</a>";
         echo "<table border='1'>
                 <tr>
                     <th>Descrição</th>
@@ -29,19 +36,23 @@ if (!isset($_SESSION['login'])) {
                     <th>Categoria</th>
                 </tr>";
         
-        // Exibir as entradas armazenadas na sessão
-        foreach ($_SESSION['saidas'] as $saidas) {
+        // Itera sobre os resultados e exibe as entradas
+        while ($saidas = mysqli_fetch_assoc($result)) {
             echo "<tr>";
             echo "<td>" . htmlspecialchars($saidas['descricao']) . "</td>"; 
             echo "<td>" . htmlspecialchars($saidas['valor']) . "</td>";
-            echo "<td>" . htmlspecialchars($saidas['data_saida']) . "</td>";
+
+            $data = new DateTime($saidas['data_saida']);
+            echo "<td>" . htmlspecialchars($data->format('d/m/Y')) . "</td>";
+            
             echo "<td>" . htmlspecialchars($saidas['categoria']) . "</td>";
             echo "</tr>";
         }
     
         echo "</table>";
+        
     } else {
-        echo "Nenhuma saida armazenada na sessão.";
+        echo "Nenhuma entrada encontrada.";
     }
     ?>
 </body>

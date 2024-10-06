@@ -5,10 +5,14 @@
     require_once("config/error.php");
     $cash = file_get_contents('components/cash.svg');
 
-    echo '<link rel="stylesheet" type="text/css" href="components/navbar.css">';
+    echo '<link rel="stylesheet" type="text/css" href="style.css">';
     echo '<link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />';
     echo '<link rel="icon" type="image/x-icon" href="components/favicon.ico">';
+    echo '<style>';   
+    echo "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');";
+    echo '</style>';
     echo '<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>';
+
    
         echo <<<EOD
       

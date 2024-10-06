@@ -4,6 +4,6 @@ session_unset(); // Remove todas as variáveis de sessão
 session_destroy(); // Destroi a sessão
 
 // Redireciona para a página de login ou home
-header("Location: ../index.php");
+header("Location: ../home.html");
 exit(); // Para garantir que o script não continue executando
 ?>

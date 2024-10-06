@@ -1,6 +1,8 @@
 <?php
 require_once("config/con_bd.php");
 include('components/navbar-login.php');
+   // Obtém o ID do usuário da sessão
+   $user_id = $_SESSION['user_id'];
 
 
 if (!isset($_SESSION['login'])) {
@@ -19,8 +21,7 @@ if (!isset($_SESSION['login'])) {
 <body>
 <h1 style="text-align: center;">Entradas</h1>
     <?php 
-    // Obtém o ID do usuário da sessão
-    $user_id = $_SESSION['user_id'];
+ 
    
     
     // Consulta ao banco de dados para buscar as entradas do usuário

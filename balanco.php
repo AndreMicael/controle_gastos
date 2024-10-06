@@ -77,8 +77,8 @@
                 <th scope='col' class='px-6 py-3'>Valor</th>
                 <th scope='col' class='px-6 py-3'>Data</th>
                 <th scope='col' class='px-6 py-3'>Categoria</th>
-                <th scope='col' class='px-6 py-3'>Excluir</th>
-                <th scope='col' class='px-6 py-3'>Ação</th>
+                <th scope='col' colspan='2' class='px-6 py-3'></th>
+               
             </tr>
              </thead>";
 
@@ -104,13 +104,13 @@
 
               </td>";
 
-              echo "<td class='px-6 py-3'>
-              <form action='editar-transacao.php' method='POST' style='display:inline;'>
-                  <input type='hidden' name='id' value='" . htmlspecialchars($transacao['id']) . "'>
-                  <input type='hidden' name='tipo' value='" . htmlspecialchars($transacao['tipo']) . "'>
-                  <button class='font-medium text-blue-600 dark:text-blue-500 hover:underline' type='submit' value='Editar'> $edit </button>
-              </form>
-          </td>";
+        echo "<td class='px-6 py-3'>
+            <form action='editar-transacao.php' method='POST'>
+                <input type='hidden' name='id' value='" . htmlspecialchars($transacao['id']) . "'>
+                <input type='hidden' name='tipo' value='" . htmlspecialchars($transacao['tipo']) . "'>
+                <button class='font-medium text-blue-600 dark:text-blue-500 hover:underline' type='submit' value='Editar'> $edit </button>
+            </form>
+    </td>";
           
         
 

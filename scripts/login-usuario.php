@@ -15,7 +15,7 @@ if (isset($_POST["login"], $_POST["entrar"], $_POST["senha"])) {
     }
 
     // Preparar a consulta para evitar SQL Injection
-    $stmt = $conn->prepare("SELECT nome, senha FROM usuario WHERE username = ?");
+    $stmt = $conn->prepare("SELECT id, nome, senha FROM usuario WHERE username = ?");
     $stmt->bind_param("s", $login);  // "s" significa string
 
     // Executar a consulta
@@ -31,12 +31,14 @@ if (isset($_POST["login"], $_POST["entrar"], $_POST["senha"])) {
         $row = $result->fetch_assoc();
         $nome = $row['nome']; // Pega o nome do banco de dados
         $senhaBD = $row['senha']; // Pega a senha do banco de dados
+        $userId = $row['id']; // Pega o ID do usuário
 
         // Verifique se a senha está correta
         if ($senha === $senhaBD) { // Troque essa linha se estiver usando hash
-            // Armazena o nome e o login na sessão
+            // Armazena o nome, login e user_id na sessão
             $_SESSION["login"] = $login;
             $_SESSION["nome"] = $nome; // Armazena o nome do usuário na sessão
+            $_SESSION["user_id"] = $userId; // Armazena o ID do usuário na sessão como user_id
             
             header("Location:../index.php");
             exit();

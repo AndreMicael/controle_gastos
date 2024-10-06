@@ -4,7 +4,8 @@
     session_start(); // Inicie a sessão
     $_SESSION['login'];
     echo '<link rel="stylesheet" type="text/css" href="components/navbar.css">';
-    echo '<script src="https://cdn.tailwindcss.com"></script>';
+    echo '<link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />';
+    echo '<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>';
     if (isset($_SESSION['login'])) {
         echo <<<EOD
         <nav>

@@ -1,6 +1,7 @@
 <?php
 require_once("config/con_bd.php");
-session_start();
+include('components/navbar-login.php');
+
 
 // Verificar se o usuário está logado
 if (!isset($_SESSION['login'])) {

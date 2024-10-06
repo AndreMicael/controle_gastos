@@ -1,6 +1,8 @@
 <?php 
     require_once("config/con_bd.php");
     include('components/navbar-login.php');
+    $edit = file_get_contents('components/edit.svg');
+    $delete = file_get_contents('components/delete.svg');
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -66,48 +68,50 @@
     });
 
     // Exibir a tabela
-    echo "<table border='1'>
+    echo "  <div class='relative overflow-hidden shadow-md sm:rounded-lg w-1/2 mx-auto p-4'>
+            <table class='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
+            <thead class='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
             <tr>
-                <th>Tipo</th>
-                <th>Descrição</th>
-                <th>Valor</th>
-                <th>Data</th>
-                <th>Categoria</th>
-                <th>Excluir</th>
-                <th>Editar</th>
-            </tr>";
+                <th scope='col' class='px-6 py-3'>Tipo</th>
+                <th scope='col' class='px-6 py-3'>Descrição</th>
+                <th scope='col' class='px-6 py-3'>Valor</th>
+                <th scope='col' class='px-6 py-3'>Data</th>
+                <th scope='col' class='px-6 py-3'>Categoria</th>
+                <th scope='col' class='px-6 py-3'>Excluir</th>
+                <th scope='col' class='px-6 py-3'>Ação</th>
+            </tr>
+             </thead>";
 
     foreach ($transacoes as $transacao) {
-        echo "<tr>";
-        echo "<td>" . htmlspecialchars(ucfirst($transacao['tipo'])) . "</td>"; 
-        echo "<td>" . htmlspecialchars($transacao['descricao']) . "</td>"; 
+        echo "<tbody>";
+        echo "<tr class='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'>";
+        echo "<td class='px-6 py-3'>" . htmlspecialchars(ucfirst($transacao['tipo'])) . "</td>"; 
+        echo "<td class='px-6 py-3'>" . htmlspecialchars($transacao['descricao']) . "</td>"; 
         echo ($transacao['tipo'] === 'entrada') ? "<td> R$ " . htmlspecialchars($transacao['valor']) . "</td>" : "<td> -R$ " . htmlspecialchars($transacao['valor']) . "</td>";
 
         $data = new DateTime($transacao['data']);
-        echo "<td>" . htmlspecialchars($data->format('d/m/Y')) . "</td>";
-        echo "<td>" . htmlspecialchars($transacao['categoria']) . "</td>";   
+        echo "<td class='px-6 py-3'>" . htmlspecialchars($data->format('d/m/Y')) . "</td>";
+        echo "<td class='px-6 py-3'>" . htmlspecialchars($transacao['categoria']) . "</td>";   
         
         // Adicionando o botão de excluir e editar
-        echo "<td>
-                <form action='scripts/excluir-transacao.php' method='POST' style='display:inline;'>
+        echo "<td class='px-6 py-3'>
+                <form action='scripts/excluir-transacao.php' method='POST' >
                     <input type='hidden' name='id' value='" . htmlspecialchars($transacao['id']) . "'>
                     <input type='hidden' name='tipo' value='" . htmlspecialchars($transacao['tipo']) . "'>
-                    <input type='submit' value='Excluir' onclick='return confirm(\"Tem certeza que deseja excluir esta transação?\");'>
-                </form>
+                    <button class='font-medium text-red-600 dark:text-red-500 hover:underline' type='submit' value='Excluir' onclick='return confirm(\"Tem certeza que deseja excluir esta transação?\");'> $delete </button> 
+                </form> 
 
 
               </td>";
 
-        echo "<td>
-        <form action='editar-transacao.php' method='POST' style='display:inline;'>
-            <input type='hidden' name='id' value='" . htmlspecialchars($transacao['id']) . "'>
-            <input type='hidden' name='tipo' value='" . htmlspecialchars($transacao['tipo']) . "'>
-            <input type='submit' value='Editar'>
-        </form>
-
-              
-            </td>";
-
+              echo "<td class='px-6 py-3'>
+              <form action='editar-transacao.php' method='POST' style='display:inline;'>
+                  <input type='hidden' name='id' value='" . htmlspecialchars($transacao['id']) . "'>
+                  <input type='hidden' name='tipo' value='" . htmlspecialchars($transacao['tipo']) . "'>
+                  <button class='font-medium text-blue-600 dark:text-blue-500 hover:underline' type='submit' value='Editar'> $edit </button>
+              </form>
+          </td>";
+          
         
 
         echo "</tr>";
@@ -115,12 +119,13 @@
 
     $totalBalanco = $totalEntradas - $totalSaidas;
 
-    echo "<tr>
-            <td colspan='4'>Balanço</td>
-            <td>R$ " . number_format($totalBalanco, 2, ',', '.') . "</td>        
-        </tr>";
+    echo "<tr class='bg-blue-500 text-white '>
+            <td class='p-4 '>Balanço</td>
+            <td colspan='6' class='font-bold'>R$ " . number_format($totalBalanco, 2, ',', '.') . "</td>        
+        </tr>
+        </tbody>";
 
-    echo "</table>";
+    echo "</table></div>";
 
     echo "<a href='criar-transacao.php'>Inserir Nova Transacao</a>";
  

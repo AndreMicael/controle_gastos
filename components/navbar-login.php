@@ -4,6 +4,7 @@
     session_start(); // Inicie a sessão
     $_SESSION['login'];
     echo '<link rel="stylesheet" type="text/css" href="components/navbar.css">';
+    echo '<script src="https://cdn.tailwindcss.com"></script>';
     if (isset($_SESSION['login'])) {
         echo <<<EOD
         <nav>

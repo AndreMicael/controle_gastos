@@ -94,6 +94,9 @@ if (!isset($_SESSION["login"])) {
                 htmlspecialchars($entrada["categoria"]) .
                 "</td>";
 
+
+            // Excluir transação
+            // Enviaremos também pagina_origem para poder redirecionar o usuário para a página correta após a exclusão da transação.
             echo "<td class='px-3 py-3'>
             <form action='scripts/excluir-transacao.php' method='POST' style='display:inline;'>
                  <input type='hidden' name='pagina_origem' value='entradas'>         
@@ -106,7 +109,9 @@ if (!isset($_SESSION["login"])) {
 
 
           </td>";
-
+            
+            // Editar Transação
+            // Enviaremos também pagina_origem para poder redirecionar o usuário para a página correta após a exclusão da transação.
             echo "<td class='px-6 py-3'>
             <form action='editar-transacao.php' method='POST' style='display:inline;'>
             <input type='hidden' name='pagina_origem' value='entradas'>  

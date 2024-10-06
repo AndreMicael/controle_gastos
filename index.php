@@ -139,6 +139,6 @@ if (isset($nome_session)) {
   echo '</div>';
 }
 ?>
-
+<?php include('components/footer.php'); ?>
 </body>
 </html>

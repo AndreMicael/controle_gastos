@@ -3,6 +3,11 @@
 require_once("config/con_bd.php");
 
 include('components/navbar.php');
+if (!isset($_SESSION['login'])) {
+    header('Location: index.php');
+    exit();
+}
+
 
 ?>
 

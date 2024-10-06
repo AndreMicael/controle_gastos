@@ -81,11 +81,13 @@ if (!isset($_SESSION['login'])) {
             echo "</tr>";
         }
         
-        echo "</tbody> </table>";
+        echo "</tbody> </table></div>";
         
     } else {
         echo "Nenhuma saida encontrada.";
     }
     ?>
+
+<?php include('components/footer.php'); ?>
 </body>
 </html>

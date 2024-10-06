@@ -28,3 +28,7 @@ include('components/navbar.php');
 
 </body>
 </html>
+
+<?php
+include('components/footer.php');
+?>

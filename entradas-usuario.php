@@ -1,6 +1,7 @@
 <?php
 require_once("config/con_bd.php");
 include('components/navbar-login.php');
+
 $edit = file_get_contents('components/edit.svg');
 $delete = file_get_contents('components/delete.svg');
 
@@ -82,11 +83,14 @@ if (!isset($_SESSION['login'])) {
             echo "</tr>";
         }
         
-        echo "</tbody> </table>";
+        echo "</tbody> </table></div>";
         
     } else {
         echo "Nenhuma entrada encontrada.";
     }
     ?>
 </body>
+ 
+<?php include('components/footer.php'); ?>
 </html>
+

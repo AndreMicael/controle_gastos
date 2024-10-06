@@ -3,6 +3,11 @@
 require_once("config/con_bd.php");
 include('components/navbar-login.php');
 
+if (!isset($_SESSION['login'])) {
+    header('Location: index.php');
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -45,5 +50,6 @@ include('components/navbar-login.php');
 </span>
 </button>
     </form>
+    <?php include('components/footer.php'); ?>
 </body>
 </html>

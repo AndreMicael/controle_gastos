@@ -8,7 +8,8 @@
 <body>
 <?php
 
-session_start(); // Inicie a sessão
+
+include('components/navbar-login.php');
 
 $nome_session = $_SESSION["nome"];
 

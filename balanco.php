@@ -1,3 +1,7 @@
+<?php 
+    require_once("config/con_bd.php");
+    include('components/navbar-login.php');
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,15 +10,16 @@
     <title>Balanço</title>
 </head>
 <body>
+<h1 style="text-align: center;">Balanço Geral</h1>
     <?php 
-    require_once("config/con_bd.php");
-    session_start();
+
+    
 
     if (!isset($_SESSION['login'])) {
         header('Location: index.php');
         exit();
     }
-
+    
     // Obtém o ID do usuário logado
     $user_id = $_SESSION['user_id'];
 

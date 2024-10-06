@@ -1,7 +1,8 @@
 <?php
 require_once("config/con_bd.php");
+include('components/navbar-login.php');
 
-session_start();
+
 if (!isset($_SESSION['login'])) {
     header('Location: index.php');
     exit(); // Adicionado exit() para garantir que o script pare após redirecionar
@@ -16,6 +17,7 @@ if (!isset($_SESSION['login'])) {
     <title>Entradas</title>
 </head>
 <body>
+<h1 style="text-align: center;">Entradas</h1>
     <?php 
     // Obtém o ID do usuário da sessão
     $user_id = $_SESSION['user_id'];
@@ -27,8 +29,7 @@ if (!isset($_SESSION['login'])) {
 
     // Verifica se a consulta retornou resultados
     if (mysqli_num_rows($result) > 0) {
-        echo "<a href='criar-entrada.php'>Inserir Nova Entrada</a>";
-        echo "<a href='saidas-usuario.php'>Ir para Saídas</a>";
+       
         echo "<table border='1'>
                 <tr>
                     <th>Descrição</th>

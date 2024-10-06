@@ -16,7 +16,7 @@ $id = mysqli_real_escape_string($conn, $id);
 $tipo = mysqli_real_escape_string($conn, $tipo);
 
 if($tipo === 'entrada'){
-    $query = "SELECT descricao, valor, data_entrada, categoria FROM entradas WHERE id = '$id'";
+    $query = "SELECT descricao, valor, data_transacao, categoria FROM entradas WHERE id = '$id'";
     $edit_entrada = mysqli_query($conn, $query);
     
     if (mysqli_num_rows($edit_entrada) > 0) {
@@ -27,7 +27,7 @@ if($tipo === 'entrada'){
     }
 } elseif ($tipo === 'saida') {
     // Deletar da tabela 'saidas'
-    $query = "SELECT descricao, valor, data_saida, categoria FROM saidas WHERE id = '$id'";
+    $query = "SELECT descricao, valor, data_transacao, categoria FROM saidas WHERE id = '$id'";
     $edit_saida = mysqli_query($conn, $query);
     
     if (mysqli_num_rows($edit_saida) > 0) {
@@ -62,11 +62,7 @@ if($tipo === 'entrada'){
         <input type="number" step="0.01" name="valor" value="<?php echo htmlspecialchars($produto['valor']); ?>" required><br>
 
         <label for="data_entrada">Data:</label>
-        <?php if($tipo === 'entrada') { ?>
-            <input type="date" name="data_entrada" value="<?php echo htmlspecialchars($produto['data_entrada']); ?>" required><br>
-        <?php } elseif ($tipo === 'saida') { ?>
-            <input type="date" name="data_saida" value="<?php echo htmlspecialchars($produto['data_saida']); ?>" required><br>
-        <?php } ?>
+        <input type="date" name="data_transacao" value="<?php echo htmlspecialchars($produto['data_transacao']); ?>" required><br>
 
         <label for="categoria">Categoria:</label>
         <input type="text" name="categoria" value="<?php echo htmlspecialchars($produto['categoria']); ?>" required><br>

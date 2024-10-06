@@ -3,10 +3,11 @@ session_start();
 require_once("../config/con_bd.php");
 
 // Verifique se os campos estão definidos
-if (isset($_POST["login"], $_POST["entrar"])) {
+if (isset($_POST["login"], $_POST["entrar"], $_POST["senha"])) {
 
     $login = $_POST["login"];
     $entrar = $_POST["entrar"];
+    $senha = $_POST["senha"];
 
     // Verifique a conexão
     if (!$conn) {
@@ -14,7 +15,7 @@ if (isset($_POST["login"], $_POST["entrar"])) {
     }
 
     // Preparar a consulta para evitar SQL Injection
-    $stmt = $conn->prepare("SELECT nome FROM usuario WHERE username = ?");
+    $stmt = $conn->prepare("SELECT nome, senha FROM usuario WHERE username = ?");
     $stmt->bind_param("s", $login);  // "s" significa string
 
     // Executar a consulta
@@ -29,14 +30,21 @@ if (isset($_POST["login"], $_POST["entrar"])) {
     } else {
         $row = $result->fetch_assoc();
         $nome = $row['nome']; // Pega o nome do banco de dados
+        $senhaBD = $row['senha']; // Pega a senha do banco de dados
 
-        // Armazena o nome e o login na sessão
-        $_SESSION["login"] = $login;
-        $_SESSION["nome"] = $nome; // Armazena o nome do usuário na sessão
-       
-
-        header("Location:../index.php");
-        exit();
+        // Verifique se a senha está correta
+        if ($senha === $senhaBD) { // Troque essa linha se estiver usando hash
+            // Armazena o nome e o login na sessão
+            $_SESSION["login"] = $login;
+            $_SESSION["nome"] = $nome; // Armazena o nome do usuário na sessão
+            
+            header("Location:../index.php");
+            exit();
+        } else {
+            echo "<script language='javascript' type='text/javascript'>
+            alert('Senha incorreta');window.location.href='../login-usuario.html';</script>";
+            die();
+        }
     }
 
     // Fechar a conexão

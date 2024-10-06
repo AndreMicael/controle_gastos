@@ -1,3 +1,6 @@
+<!-- Objetivo: Armazenar as entradas do usuário logado na sessão e redirecionar para a página de entradas do usuário.
+-->
+
 <?php
 session_start();
 require_once("../config/con_bd.php");
@@ -25,6 +28,7 @@ if (isset($_SESSION["login"])) {
             $_SESSION['entradas'][] = $entrada; // Adiciona cada entrada ao array da sessão
         }
 
+        
         if (empty($_SESSION['entradas'])) {
             echo "Nenhuma entrada encontrada.";
         } else {

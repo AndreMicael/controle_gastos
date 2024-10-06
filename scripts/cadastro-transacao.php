@@ -21,7 +21,7 @@ if ($conn) {
             $tipo = $_POST['tipo'] ?? '';
             $preco = $_POST['preco'] ?? '';
             $categoria = $_POST['categoria'] ?? '';
-            $data_transacao = $_POST['data_transacao'] ?? ''; // Removido o espaço extra
+            $data_transacao = $_POST['data_transacao'] ?? '';
 
             // Verifica o tipo da transação e busca os dados
             if ($tipo === 'entrada') {
@@ -35,7 +35,11 @@ if ($conn) {
 
             // Sanitizar os dados
             $descricao = mysqli_real_escape_string($conn, $descricao);
-            $preco = mysqli_real_escape_string($conn, str_replace(',', '.', $preco)); // Garantir formato correto do preço
+
+            // **Aqui fazemos a conversão do valor do preço**
+            $preco = str_replace(',', '.', $preco); // Substitui a vírgula por ponto para valores decimais
+            $preco = mysqli_real_escape_string($conn, $preco);
+
             $data_transacao = mysqli_real_escape_string($conn, $data_transacao);
             $categoria = mysqli_real_escape_string($conn, $categoria);
 
@@ -50,7 +54,7 @@ if ($conn) {
 
             // Execute a inserção e verifique o resultado
             if (mysqli_query($conn, $str_insert)) {
-                header("Location: ../balanco.php");
+                header("Location: ../index.php");
                 exit(); // Adicionei exit() após o redirecionamento
             } else {
                 echo "<br />Erro cadastrando: " . mysqli_error($conn); // Exibir o erro retornado pelo SGBD

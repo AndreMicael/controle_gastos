@@ -52,23 +52,25 @@ if($tipo === 'entrada'){
     <title>Editar Produto</title>
 </head>
 <body>
-    <h1>Editar Produto</h1>
-    <form action="scripts/atualizar-produto.php" method="POST">
+   
+    <form action="scripts/atualizar-produto.php" class='flex flex-col   w-1/2 mt-6 mx-auto align-center' method="POST">
         <input type="hidden" name="id" value="<?php echo $id; ?>">
         <input type="hidden" name="tipo" value="<?php echo $tipo; ?>">
-        <label for="descricao">Descrição:</label>
-        <input type="text" name="descricao" value="<?php echo htmlspecialchars($produto['descricao']); ?>" required><br>
+        <label for="descricao" class='text-sm'>Descrição:</label>
+        <input type="text" name="descricao" class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' value="<?php echo htmlspecialchars($produto['descricao']); ?>" required><br>
 
-        <label for="valor">Valor:</label>
-        <input type="number" step="0.01" name="valor" value="<?php echo htmlspecialchars($produto['valor']); ?>" required><br>
+        <label class='text-sm' for="valor">Valor:</label>
+        <input type="number" step="0.01" name="valor" class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' value="<?php echo htmlspecialchars($produto['valor']); ?>" required><br>
 
-        <label for="data_entrada">Data:</label>
-        <input type="date" name="data_transacao" value="<?php echo htmlspecialchars($produto['data_transacao']); ?>" required><br>
+        <label for="data_entrada" class='text-sm'>Data da transação:</label>
+        <input type="date" name="data_transacao" class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' value="<?php echo htmlspecialchars($produto['data_transacao']); ?>" required><br>
 
-        <label for="categoria">Categoria:</label>
-        <input type="text" name="categoria" value="<?php echo htmlspecialchars($produto['categoria']); ?>" required><br>
+        <label  class='text-sm' for="categoria">Categoria:</label>
+        <input type="text" name="categoria"  class='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'  value="<?php echo htmlspecialchars($produto['categoria']); ?>" required><br>
 
-        <input type="submit" value="Salvar" onclick='return confirm("Tem certeza que deseja editar esta transação?");'>
+        
+
+        <button type="submit" value="Salvar"  class=" w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" onclick='return confirm("Tem certeza que deseja editar esta transação?");'> Salvar </button>
     </form>
 </body>
 </html>

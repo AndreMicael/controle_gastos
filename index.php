@@ -126,15 +126,15 @@ if (isset($nome_session)) {
     foreach ($transacoes as $transacao) {
         echo "<tbody>";
         echo "<tr class='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600'>";
-        echo "<td class='px-3 py-3'>" .
+        echo "<td class='font-semibold px-3 py-3'>" .
             htmlspecialchars(ucfirst($transacao["tipo"])) .
             "</td>";
         echo "<td class='px-3 py-3'>" .
             htmlspecialchars($transacao["descricao"]) .
             "</td>";
         echo $transacao["tipo"] === "entrada"
-            ? "<td> R$ " . htmlspecialchars($transacao["valor"]) . "</td>"
-            : "<td> -R$ " . htmlspecialchars($transacao["valor"]) . "</td>";
+            ? "<td class='text-green-500'> R$ " . htmlspecialchars($transacao["valor"]) . "</td>"
+            : "<td class='text-red-500'> -R$ " . htmlspecialchars($transacao["valor"]) . "</td>";
 
         $data = new DateTime($transacao["data"]);
         echo "<td class='px-3 py-3'>" .

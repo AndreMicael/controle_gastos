@@ -65,7 +65,7 @@ if (isset($_POST["login"], $_POST["entrar"], $_POST["senha"])) {
         } else {
             // Se a senha estiver incorreta, exibe uma mensagem de erro e redireciona o usuário para a página de login
             echo "<script language='javascript' type='text/javascript'>
-            alert('Senha incorreta');window.location.href='../login-usuario.html';</script>"; //Alert para informar que a senha está incorreta
+            alert('Senha incorreta');window.location.href='../login-usuario.php';</script>"; //Alert para informar que a senha está incorreta
             die();
         }
     }

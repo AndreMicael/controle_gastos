@@ -1,11 +1,11 @@
 <?php
 
 	//define("DB_HOST","");
-	$DB_HOST = "localhost";
-	$DB_PORT = "3306";
-	$DB_USER = "root";
-	$DB_PASS = "";
-	$DB_NAME = "controle_gastos";
+$DB_HOST = "br1048.hostgator.com.br"; 
+	$DB_PORT = "3306"; 
+	$DB_USER = "andre990";
+	$DB_PASS = "4@002892Aa";
+	$DB_NAME = "andre990_controle_gastos";
 	
 	$conn = null;
 	
